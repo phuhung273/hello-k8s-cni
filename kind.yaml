@@ -4,4 +4,11 @@ networking:
   disableDefaultCNI: true
 nodes:
 - role: control-plane
+  extraMounts:
+  # With this file, node will be in Ready state
+  - hostPath: 10-hello-cni.conf
+    containerPath: /etc/cni/net.d/10-hello-cni.conf
 - role: worker
+  extraMounts:
+  - hostPath: 10-hello-cni.conf
+    containerPath: /etc/cni/net.d/10-hello-cni.conf
