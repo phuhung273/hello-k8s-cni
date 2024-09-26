@@ -30,3 +30,10 @@ VETH_NETNS=veth_netns
 ip link add ${VETH_HOST} type veth peer name ${VETH_NETNS}
 ```
 
+### 4. Move veth_netns to container network namespace
+![Fourth step](cni-step-4.png)
+```bash
+# put one of the veth interfaces into the new network namespace
+NETNS=$(basename ${CNI_NETNS})
+ip link set ${VETH_NETNS} netns ${NETNS}
+```
