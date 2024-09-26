@@ -14,7 +14,9 @@ kind create cluster --config kind.yaml --name default
 {
   "cniVersion": "1.0.0",
   "name": "hello",
-  "type": "executable" // executable under /opt/cni/bin/
+  "type": "demystifying" // executable under /opt/cni/bin/
 }
 ```
 
+### CRI pass data (JSON + environment) to executable
+![Second step](cni-step-2.png)
