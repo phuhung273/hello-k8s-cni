@@ -7,7 +7,7 @@ kind create cluster --config kind.yaml --name default
 ```
 
 ## Code break down
-### CNI Config
+### 1. CNI Config
 ![First step](cni-step-1.png)
 ```json
 // Config manifest under /etc/cni/net.d/
@@ -18,5 +18,15 @@ kind create cluster --config kind.yaml --name default
 }
 ```
 
-### CRI pass data (JSON + environment) to executable
+### 2. CRI pass data (JSON + environment) to executable
 ![Second step](cni-step-2.png)
+
+### 3. Create 2 veth: veth_netns and veth_host 
+![Third step](cni-step-3.png)
+```bash
+# create veth
+VETH_HOST=veth_host
+VETH_NETNS=veth_netns
+ip link add ${VETH_HOST} type veth peer name ${VETH_NETNS}
+```
+
